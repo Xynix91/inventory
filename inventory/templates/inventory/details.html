@@ -1,0 +1,25 @@
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="/inventory/edit/{{ film.id }}/" method="post">
+    {% csrf_token %}
+    <a href="/inventory/list/"><button type="button">Back</button></a><br><br>
+
+    <input type="text" id="title" name="title" value="{{ film.name }}"><br>
+
+    <label for="standalone">Standalone film?</label>
+    <input type="checkbox" id="standalone" name="standalone" {{ standalone_box }}><br><br>
+
+    <label for="series">Series:</label><br>
+    <input list="series" name="series" value="{{ film.series.name }}"><br>
+    <label for="ordinal">Ordinal:</label><br>
+    <input type="number" id="ordinal" name="ordinal" value="{{ film.ordinal }}"><br><br>
+    <input type="submit" value="Submit changes"><br><br>
+
+    <a href="/inventory/delete/{{ film.id }}/"><button type="button">Delete film</button></a>
+
+    <datalist id="series">
+        {% for option in series_list %}
+            <option value="{{ option.name }}"
+        {% endfor %}
+    </datalist>
+</form>

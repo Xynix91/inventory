@@ -2,6 +2,8 @@
 
 <ul>
 {% for film in films %}
-    <li>{{ film.name }}</li>
+    <li><a href="/inventory/details/{{ film.id }}/">{{ film.name }}</a></li>
 {% endfor %}
 </ul>
+
+<a href="/inventory/create/"><button type="button">Add a film</button></a>

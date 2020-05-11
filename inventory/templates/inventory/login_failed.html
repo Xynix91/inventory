@@ -1,0 +1,14 @@
+<h1>Log in</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'inventory:verify' %}" method="post">
+    {% csrf_token %}
+    <label for="email">Email:</label><br>
+    <input type="text" id="email" name="email" value={{ prev_email }}><br>
+    <label for="pass">Password:</label><br>
+    <input type="password" id="pass" name="pass" value={{ prev_pass }}><br>
+    <input type="submit" value="Log in">
+</form>
+
+<p>Login failed. Try again.</p>

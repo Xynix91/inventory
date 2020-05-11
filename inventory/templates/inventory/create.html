@@ -1,0 +1,28 @@
+<a href="/inventory/list/"><button type="button">Back</button></a><br>
+
+<h1>Add a film</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'inventory:create-action' %}" method="post">
+    {% csrf_token %}
+
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title"><br>
+    <label for="standalone">Standalone film?</label>
+    <input type="checkbox" id="standalone" name="standalone" checked><br><br>
+
+    <label for="series">Series:</label><br>
+    <input list="series" name="series"><br>
+    <label for="ordinal">Ordinal:</label><br>
+    <input type="number" id="ordinal" name="ordinal"><br><br>
+    <input type="submit">
+
+    <a href="/inventory/list/"><button type="button">Cancel</button></a>
+
+    <datalist id="series">
+        {% for option in series_list %}
+            <option value="{{ option.name }}"
+        {% endfor %}
+    </datalist>
+</form>
